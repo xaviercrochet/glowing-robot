@@ -1,0 +1,17 @@
+version: '3.4'
+services:
+  vaultwarden:
+    image: vaultwarden/server:1.26.0
+    restart: always
+    ports: 
+      - "4280:80"
+      - "3012:3012"
+    container_name: vaultwarden
+    environment:
+      USE_SYSLOG: "true"
+      WEBSOCKET_ENABLED: "true"  
+      ADMIN_TOKEN: "${ADMIN_TOKEN}"
+      SIGNUP_ALLOWED: "false"
+      DOMAIN: "https://vault.jonboat.ch"
+    volumes:
+      - /home/vault/data/:/data

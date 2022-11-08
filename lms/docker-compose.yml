@@ -1,0 +1,14 @@
+version: '3.4'
+services:
+  lms:
+    command: /etc/lms.conf
+    user: lms:lms
+    image: epoupon/lms:3.32.0
+    ports: 
+      - "5082:5082"
+    container_name: lms
+    restart: always
+    volumes:
+      - ./lms.conf:/etc/lms.conf
+      - /home/lms/Music:/music:rw 
+      - /home/lms/.data/:/var/lms
