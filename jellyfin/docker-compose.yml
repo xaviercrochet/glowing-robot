@@ -25,9 +25,9 @@ services:
       - /home/jellyfin/jelly-root/cache:/var/cache/jellyfin
       - /home/jellyfin/jelly-root/lib:/var/lib/jellyfin
       - /var/log/jellyfin:/var/log/jellyfin
-      - /media/Downloads:/media/Downloads
-      - /media/Videos:/media/Videos
-      - /home/lms/Music:/home/lms/Music
+      - ${DOWNLOADS_FOLDER}:/media/Downloads
+      - ${VIDEOS_FOLDER}:/media/Videos
+      - ${MUSIC_FOLDER}:/home/lms/Music
     devices:
       - /dev/dri/renderD128:/dev/dri/renderD128
       - /dev/dri/card0:/dev/dri/card0
@@ -66,8 +66,8 @@ services:
       - TZ=Europe/Zurich
     volumes:
       - /home/jellyfin/bazarr/data/config:/config
-      - /media/Videos/tv-shows:/tv
-      - /media/Videos/movies:/movies
+      - ${TV_SHOWS_FOLDER}:/tv
+      - ${MOVIES_FOLDER}:/movies
     ports:
       - 6767:6767
     restart: always
@@ -82,8 +82,8 @@ services:
       - TZ=Europe/Zurich
     volumes:
       - /home/jellyfin/sonarr/config:/config
-      - /media/Videos/tv-shows:/tv 
-      - /media/Downloads/sonarr:/downloads
+      - ${TV_SHOWS_FOLDER}:/tv 
+      - ${SONARR_FOLDER}:/downloads
     ports:
       - 8989:8989
     restart: always  
@@ -98,7 +98,7 @@ services:
       - PGID=100
       - TZ=Europe/Zurich
     volumes:
-      - /media/jellyfin/prowlarr/config:/config
+      - ${PROWLARR_CONFIG_FOLDER}:/config
     ports:
       - 9696:9696
     restart: always
@@ -113,8 +113,8 @@ services:
       - TZ=Europe/Zurich
     volumes:
       - /home/jellyfin/radarr/config:/config
-      - /media/Downloads/radarr:/downloads
-      - /media/Videos/movies:/movies 
+      - ${RADARR_FOLDER}:/downloads
+      - ${MOVIES_FOLDER}:/movies 
     ports:
       - 7878:7878
     restart: always
